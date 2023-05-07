@@ -24,24 +24,10 @@ const isValidMobileNumber =function(value){
      return ((/^((\+91)?|91)?[6789][0-9]{9}$/g).test(value));
      }
 
-const isValidCity = function(value){
-     return (/^[A-Z a-z]+$/).test(value)
-     }
-
-const isValidPin = function(value){
-     return (/^[1-9][0-9]{5}$/).test(value)
-     }
 
 const isValidImage = function(value){
      return (/\.(gif|jpe?g|tiff?|png|webp|bmp)$/).test(value)
      }
 
-const isValidProductName = function(value){
-     return (/^[A-Za-z]+|[A-Za-z]+\[0-9]+$/).test(value)
-     }
 
-const isValidPrice = function(value){
-     return (/^(?:0|[1-9]\d*)(?:\.(?!.*000)\d+)?$/).test(value) 
-    }
-
-    module.exports = {isValidObjectId,isValidString,isValidName,isValidMobileNumber,isValidEmail,isValidpassword,isValidCity,isValidPin,isValidProductName,isValidPrice,isValidImage}
+module.exports = {isValidObjectId,isValidString,isValidName,isValidMobileNumber,isValidEmail,isValidpassword,isValidImage}

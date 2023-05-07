@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 const userModel = require('../Models/userModel');
-const { isValidString, isValidObjectId, isValidCity, isValidEmail, isValidImage, isValidMobileNumber, isValidName, isValidPin, isValidpassword } = require('../Validations/validation');
-const { uploadImage } = require('../middlewares/awsConection')
+const { isValidString, isValidObjectId, isValidEmail, isValidImage, isValidMobileNumber, isValidName, isValidpassword } = require('../Validations/validation');
+const { uploadImage } = require('../Middlewares/awsConection')
 const aws = require('aws-sdk');
 const bcrypt = require('bcrypt');
 
@@ -23,7 +23,6 @@ const createUser = async (req, res) => {
 
         if (!isValidString(email)) return res.status(400).send({ status: false, message: "email is mandatory, and should be in string format" })
         if (!isValidEmail(email)) return res.status(400).send({ status: false, message: 'Please enter valid emailId' })
-
 
         if (!isValidString(phone)) return res.status(400).send({ status: false, message: "phone is mandatory, and should be in string format" })
         if (!isValidMobileNumber(phone)) return res.status(400).send({ status: false, message: 'Please enter valid Mobile Number' })
@@ -65,7 +64,6 @@ const createUser = async (req, res) => {
 
 //___________________________________________User Log-In_______________________________________________________________
 
-
 const userLogin = async (req, res) => {
     try {
         let { email, password } = req.body;
@@ -98,7 +96,6 @@ const userLogin = async (req, res) => {
 
 //___________________________________________Fetching User Details_______________________________________________________________
 const getUser = async (req, res) => {
-
     try {
         let userId = req.params.userId;
         if (!isValidObjectId(userId)) return res.status(400).send({ status: false, message: "invalid userId" })
@@ -122,10 +119,8 @@ const updateUser = async (req, res) => {
         let userId = req.params.userId
         if (!isValidObjectId(userId)) return res.status(400).send({ status: false, message: "Please Enter the valid UserId" })
         //________________________________Authorization____________________________________________________________________
-
         if (userId != req.decodedToken) return res.status(403).send({ status: false, message: "unauthorized" })
         //__________________________________________________________________________________________________________________
-
 
         let { fullname, username, email, phone, password, ...a } = req.body;
         if (Object.keys(a).length != 0) return res.status(400).send({ status: false, message: `please remove ${Object.keys(a)}` })
